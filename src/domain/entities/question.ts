@@ -1,8 +1,8 @@
 import { randomUUID } from "node:crypto"
 import { Slug } from "./value-objects/slug"
-import { Entity } from "../../core/entities/entity"
-import { UniqueEntityID } from "../../core/entities/unique-entity-id"
-import { Optional } from "../../core/types/optional"
+import { Entity } from "@/core/entities/entity"
+import { UniqueEntityID } from "@/core/entities/unique-entity-id"
+import { Optional } from "@/core/types/optional"
 import dayjs from "dayjs"
 interface QuestionProps {
      title: string,
@@ -17,7 +17,10 @@ export class Question extends Entity<QuestionProps> {
      get title() {
           return this.props.title
      }
-     get bestAnswerId() {
+     get content() {
+          return this.props.content
+     }
+     get bestAnswerId(): UniqueEntityID | undefined {
           return this.props.bestAnswerId
      }
      get slug() {
@@ -53,6 +56,11 @@ export class Question extends Entity<QuestionProps> {
 
      set content(content: string) {
           this.props.content = content
+          this.touch()
+     }
+
+     set bestAnswerId(bestAnswerId: UniqueEntityID) {
+          this.props.bestAnswerId = bestAnswerId
           this.touch()
      }
 
