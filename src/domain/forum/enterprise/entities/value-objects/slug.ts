@@ -4,6 +4,10 @@ export class Slug {
     this.value = value
   }
 
+  static create(slug: string) {
+    return new Slug(slug)
+  }
+
   /**
    * Recives a string and returns a slugified version of it a slug.
    * Example: "How to create a slug?" => "how-to-create-a-slug"
