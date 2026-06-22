@@ -3,7 +3,7 @@ import { Slug } from './value-objects/slug'
 import dayjs from 'dayjs'
 import { Entity } from '@/core/entities/entity'
 import { Optional } from '@/core/types/optional'
-interface QuestionProps {
+export interface QuestionProps {
   title: string
   bestAnswerId?: UniqueEntityID
   content: string
