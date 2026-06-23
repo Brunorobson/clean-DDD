@@ -20,6 +20,7 @@ describe('Delete Question', () => {
 
     await sut.execute({
       questionId: 'question-1',
+      authorId: newQuestion.authorId.toString(),
     })
 
     expect(inMemoryQuestionsRepository.items).toHaveLength(0)
@@ -35,11 +36,11 @@ describe('Delete Question', () => {
 
     await inMemoryQuestionsRepository.create(newQuestion)
 
-    expect(() => {
-      return sut.execute({
+    await expect(
+      sut.execute({
         questionId: 'question-1',
         authorId: 'author-2',
-      })
-    }).rejects.toBeInstanceOf(Error)
+      }),
+    ).rejects.toBeInstanceOf(Error)
   })
 })
