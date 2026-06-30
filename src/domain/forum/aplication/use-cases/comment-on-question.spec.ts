@@ -1,11 +1,7 @@
 import { expect } from 'vitest'
 import { MakeQuestion } from 'test/repositories/factories/make-question'
-import { UniqueEntityID } from '@/core/entities/unique-entity-id'
-import { InMemoryQuestionRepository } from 'test/repositories/in-memory-answers-repository'
-import { ChooseQuestionBestAnswerUseCase } from './choose-question-best-answer'
-import { MakeAnswer } from 'test/repositories/factories/make-answer'
-import { InMemoryQuestionRepository } from 'test/repositories/in-memory-question-repository'
 import { InMemoryQuestionCommentRepository } from 'test/repositories/in-memory-question-comments-repository'
+import { InMemoryQuestionRepository } from 'test/repositories/in-memory-question-repository'
 import { CommentOnQuestionUseCase } from './comment-on-question'
 
 let inMemoryQuestionsRepository: InMemoryQuestionRepository
@@ -33,8 +29,8 @@ describe('Comment on Question', () => {
       content: 'Comentario teste',
     })
 
-    expect(InMemoryQuestionCommentRepository.items[0].content).toEqual(
-      'Comentario teste',
-    )
+    expect(inMemoryQuestionCommentRepository.items).toEqual([
+      expect.objectContaining({ content: 'Comentario teste' }),
+    ])
   })
 })
